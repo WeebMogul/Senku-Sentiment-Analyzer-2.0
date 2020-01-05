@@ -1,13 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4a069b7e-0e98-40da-9fa0-abad4ab04a7f" name="Default Changelist" comment="" />
+    <list default="true" id="4a069b7e-0e98-40da-9fa0-abad4ab04a7f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Data Visualization/Most frequent words.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 1 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Neural Network/LSTM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/DataClean.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/DataClean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 10 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 10 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 11 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 11 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 12 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 12 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 13 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 13 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 14 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 14 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 15 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 15 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 16 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 16 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 17 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 17 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 18 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 18 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 19 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 19 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 2 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 2 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 20 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 20 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 21 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 21 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 22 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 22 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 23 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 23 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 24 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 24 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 3 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 3 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 4 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 4 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 5 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 5 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 6 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 6 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 7 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 7 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 8 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 8 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 9 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 9 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/K-Nearest Neighbours/K-Nearest Neighbours anime.py" beforeDir="false" afterPath="$PROJECT_DIR$/K-Nearest Neighbours/K-Nearest Neighbours anime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lexicon-based Analysis/Vader Lexicon.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lexicon-based Analysis/Vader Lexicon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Naive Bayes/Naive Bayes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Naive Bayes/Naive Bayes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SVM/SVM.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM/SVM.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1VbFDJJsSlVRr7gI1TmUmaPRPuO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -15,11 +59,11 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="D:/Heriot-Watt-Msc-Project-Sentiment-Analysis-master" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.DataClean">
-    <configuration name="Com" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Python.Most frequent words">
+    <configuration name="LSTM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Senku Sentiment Analyzer 2.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -27,11 +71,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Comment_Extractor" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Neural Network" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Comment_Extractor/Com.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Neural Network/LSTM.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -40,7 +84,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="DataClean" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Most frequent words" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Senku Sentiment Analyzer 2.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -48,11 +92,74 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Data Cleaner" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Data Visualization" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Data Cleaner/DataClean.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Data Visualization/Most frequent words.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Naive Bayes" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Senku Sentiment Analyzer 2.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Naive Bayes" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Naive Bayes/Naive Bayes.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Neural Networks" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Senku Sentiment Analyzer 2.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Neural Network" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="D:\Python\Senku Sentiment Analyzer 2.0\Neural Network\Neural Networks.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="SVM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Senku Sentiment Analyzer 2.0" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SVM" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SVM/SVM.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -63,8 +170,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.DataClean" />
-        <item itemvalue="Python.Com" />
+        <item itemvalue="Python.Most frequent words" />
+        <item itemvalue="Python.LSTM" />
+        <item itemvalue="Python.Neural Networks" />
+        <item itemvalue="Python.Naive Bayes" />
+        <item itemvalue="Python.SVM" />
       </list>
     </recent_temporary>
   </component>
@@ -93,34 +203,65 @@
     </task>
     <servers />
   </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
   <component name="WindowStateProjectService">
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577514824610">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="68" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1577514824610" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1577514544157">
+    <state x="424" y="8" key="CommitChangelistDialog2" timestamp="1577542397642">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1577514544157" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1577529347061">
+    <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1577542397642" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1578156113967">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1577529347061" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1577529347060">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578156113967" />
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1578218992916">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1577529347060" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1577529347060">
+    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
+    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1578218992916">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1577529347060" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1577529347061">
+    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1578218992915">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1577529347061" />
+    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578218992915" />
+    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1578218992916">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1578169751059">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578169751059" />
+    <state width="1515" height="261" key="GridCell.Tab.1.center" timestamp="1578169751059">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1578169751059" />
+    <state width="1515" height="261" key="GridCell.Tab.1.left" timestamp="1578169751059">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1578169751059" />
+    <state width="1515" height="261" key="GridCell.Tab.1.right" timestamp="1578169751059">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1515" height="261" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1578169751059" />
     <state x="277" y="56" key="SettingsEditor" timestamp="1577524083344">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1577524083344" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1578217338779">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578217338779" />
+    <state x="0" y="0" width="740" height="824" key="find.popup" timestamp="1577542577852">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="0" y="0" width="740" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1577542577852" />
   </component>
 </project>

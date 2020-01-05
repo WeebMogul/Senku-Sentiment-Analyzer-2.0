@@ -5,22 +5,147 @@ from nltk.corpus import stopwords
 from sklearn.utils import resample,shuffle
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split, cross_validate
-from sklearn.metrics import make_scorer, precision_score, recall_score,f1_score, accuracy_score,classification_report
+from sklearn.model_selection import train_test_split, cross_validate,cross_val_score
+from sklearn.metrics import make_scorer, precision_score, recall_score,f1_score, accuracy_score,confusion_matrix
 import pandas as pd
 import string
 import numpy as np
 from sklearn.naive_bayes import MultinomialNB,BernoulliNB,GaussianNB
 from sklearn.pipeline import Pipeline
+from imblearn.over_sampling import ADASYN, SMOTE, RandomOverSampler
+
 
 import matplotlib.pyplot as pypl
 
-nltk.download("popular")
 stopword = set(stopwords.words('english'))
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
-
+contract = {
+"ain't": "is not",
+"aren't": "are not",
+"can't": "cannot",
+"can't've": "cannot have",
+"'cause": "because",
+"could've": "could have",
+"couldn't": "could not",
+"couldn't've": "could not have",
+"didn't": "did not",
+"doesn't": "does not",
+"don't": "do not",
+"hadn't": "had not",
+"hadn't've": "had not have",
+"hasn't": "has not",
+"haven't": "have not",
+"he'd": "he would",
+"he'd've": "he would have",
+"he'll": "he will",
+"he'll've": "he he will have",
+"he's": "he is",
+"how'd": "how did",
+"how'd'y": "how do you",
+"how'll": "how will",
+"how's": "how is",
+"I'd": "I would",
+"I'd've": "I would have",
+"I'll": "I will",
+"I'll've": "I will have",
+"I'm": "I am",
+"I've": "I have",
+"i'd": "i would",
+"i'd've": "i would have",
+"i'll": "i will",
+"i'll've": "i will have",
+"i'm": "i am",
+"i've": "i have",
+"isn't": "is not",
+"it'd": "it would",
+"it'd've": "it would have",
+"it'll": "it will",
+"it'll've": "it will have",
+"it's": "it is",
+"let's": "let us",
+"ma'am": "madam",
+"mayn't": "may not",
+"might've": "might have",
+"mightn't": "might not",
+"mightn't've": "might not have",
+"must've": "must have",
+"mustn't": "must not",
+"mustn't've": "must not have",
+"needn't": "need not",
+"needn't've": "need not have",
+"o'clock": "of the clock",
+"oughtn't": "ought not",
+"oughtn't've": "ought not have",
+"shan't": "shall not",
+"sha'n't": "shall not",
+"shan't've": "shall not have",
+"she'd": "she would",
+"she'd've": "she would have",
+"she'll": "she will",
+"she'll've": "she will have",
+"she's": "she is",
+"should've": "should have",
+"shouldn't": "should not",
+"shouldn't've": "should not have",
+"so've": "so have",
+"so's": "so as",
+"that'd": "that would",
+"that'd've": "that would have",
+"that's": "that is",
+"there'd": "there would",
+"there'd've": "there would have",
+"there's": "there is",
+"they'd": "they would",
+"they'd've": "they would have",
+"they'll": "they will",
+"they'll've": "they will have",
+"they're": "they are",
+"they've": "they have",
+"to've": "to have",
+"wasn't": "was not",
+"we'd": "we would",
+"we'd've": "we would have",
+"we'll": "we will",
+"we'll've": "we will have",
+"we're": "we are",
+"we've": "we have",
+"weren't": "were not",
+"what'll": "what will",
+"what'll've": "what will have",
+"what're": "what are",
+"what's": "what is",
+"what've": "what have",
+"when's": "when is",
+"when've": "when have",
+"where'd": "where did",
+"where's": "where is",
+"where've": "where have",
+"who'll": "who will",
+"who'll've": "who will have",
+"who's": "who is",
+"who've": "who have",
+"why's": "why is",
+"why've": "why have",
+"will've": "will have",
+"won't": "will not",
+"won't've": "will not have",
+"would've": "would have",
+"wouldn't": "would not",
+"wouldn't've": "would not have",
+"y'all": "you all",
+"y'all'd": "you all would",
+"y'all'd've": "you all would have",
+"y'all're": "you all are",
+"y'all've": "you all have",
+"you'd": "you would",
+"you'd've": "you would have",
+"you'll": "you will",
+"you'll've": "you will have",
+"you're": "you are",
+"you've": "you have"
+}
 # boogiepop_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Boogiepop cleaned\Cleaned_Boogiepop_Wa_Waranai_Episode_' + str(ep) + '_Comment_list.csv'
 # kaguya_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Kaguya-sama cleaned\Cleaned_Kaguya_sama_Episode_' + str(1) + '_Comment_list.csv'
 # slime_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Tensei Slime cleaned\Cleaned_Tensei_Slime_Episode_' + str(ep) + '_Comment_list.csv'
@@ -38,74 +163,137 @@ def penntag(pen):
 
 def comment_cleaner(comm, comment_array):
     temp_comm = []
-    stopwords_removed = [word for word in comm.lower().split() if word not in stopword]
+    megos = ' '
+    uncontracted = ' '.join([contract[word] if word in contract else word for word in comm.lower().split()])
+    stopwords_removed = [word for word in uncontracted.lower().split() if word not in stopword]
     POS_words = nltk.pos_tag(stopwords_removed)
     for i in range(0, len(POS_words)):
         lemmas = lemma.lemmatize(POS_words[i][0], pos=penntag(POS_words[i][1]))
         temp_comm.append(lemmas)
-    #print(temp_comm)
     megos = ' '.join(word for word in temp_comm)
-   # print(megos)
-    comment_array.append(temp_comm)
-    return comment_array
-    temp_comm.clear()
+    return megos
 
 for ep in range(1, 2):
+    df1 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 1 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df2 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 2 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df3 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 3 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df4 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 4 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df5 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 5 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df6 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 6 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df7 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 7 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df8 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 8 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df9 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 9 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df10 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 10 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df11 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 11 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df12 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 12 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df13 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 13 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df14 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 14 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df15 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 15 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df16 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 16 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df17 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 17 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df18 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 18 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df19 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 19 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df20 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 20 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df21 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 21 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df22 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 22 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df23 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 23 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df24 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 24 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
 
-    # kaguya_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode ' +str(1)+' .csv'
-    kaguya_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(
-        1) + ' .csv'
-
-    df = pd.read_csv(kaguya_file, index_col=0, encoding='utf-8-sig')
-
-    #df = df.sample(frac=1)
-    # Convert dataframe values into string
-    df['Comments'] = df['Comments'].astype(str)
-
-    # Remove punctuation marks and tokenize each and every word
-    df['Comments'] = df['Comments'].str.replace('[^\w\s]', ' ')
-
-    # Split into positive and negative datasets
-    pos_df = df[df['Actual Polarity'] == 1]
-    neg_df = df[df['Actual Polarity'] == 0]
-    neu_df = df[df['Actual Polarity'] == 2]
-
-    neg_upsample = resample(neg_df, replace=True, n_samples=len(pos_df),random_state=0)
-    neu_upsample = resample(neu_df,replace=True,n_samples=len(pos_df))
-
-    # Concatenate them into one
-    train_df = pd.concat([pos_df, neg_df])
-    train_df = train_df.reset_index(drop=True)
-
-    comment_array = []
+    df12 = pd.concat(
+        [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19, df20,
+         df21, df22, df23, df24
+         ])
+    train_array = []
+    test_array = []
     train_target = []
     comtest_array = []
+    # df = df.sample(frac=1)
+    # Convert dataframe values into string
+    df12 = df12[['Comment', 'Sentiment Rating']]
+    df12['Comment'] = df12['Comment'].astype(str)
+    df12['Length'] = df12['Comment'].apply(len)
+    #df12 = df12[df12['Length'] > 5]
+    df12['Comment'] = df12['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
-    for i in range(0, int(train_df.shape[0])):
-        sentences = train_df['Comments'][i]
-        train_words = comment_cleaner(sentences, comment_array)
+    # Remove punctuation marks and tokenize each and every word
+    df12['Comment'] = df12['Comment'].str.replace('[^\w\s]', ' ')
+    df12['Comment'] = df12['Comment'].str.replace('[\d+]', ' ')
+    df12['Comment'] = df12['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
 
-    def return_back_df(doc):
-        return doc
+    # Split into positive and negative datasets
+    pos_df = df12[df12['Sentiment Rating'] == 1]
+    neg_df = df12[df12['Sentiment Rating'] == 0]
+    neu_df = df12[df12['Sentiment Rating'] == 2]
 
+    # neu_df['Comment'] = neu_df['Comment'].
+    df_len = len(pos_df)
 
-    vec = TfidfVectorizer(analyzer='word', preprocessor=return_back_df, tokenizer=return_back_df,ngram_range=(1,2),use_idf=True,norm='l2')
-    x = vec.fit_transform(train_words)
-    train_target = train_df['Actual Polarity'][0:int(train_df.shape[0])]
-    '''
-    res = x.todense()
-    ges = res.tolist()
-    vo = vec.get_feature_names()
+    train_df = pd.concat([pos_df, neg_df])
+    # train_df = pd.concat([pos_df, neg_df,neu_df])
+    train_df = train_df.reset_index(drop=True)
 
-    tval = pd.DataFrame(ges,columns=vo)
-    sum = tval.sum(numeric_only =True)
+    x = train_df['Comment'].values
+    y = train_df['Sentiment Rating'].values
 
-    sum.sort_values(ascending=False)
-    normalized = sum / sum.max()
-    print(normalized.sort_values(ascending=False))
-    '''
-    x,train_target = shuffle(x,train_target)
-    x_train, x_test, y_train, y_test = train_test_split(x, train_target, test_size=0.3,random_state=1,stratify=train_target)
+    x_train, x_test, y_train, y_test = train_test_split(x, y,
+                                                        test_size=0.2, random_state=22)
+
+    vec = TfidfVectorizer(ngram_range=(1, 1),sublinear_tf=True)
+    # vec = CountVectorizer(ngram_range=(1, 2))
+    x_tr = vec.fit_transform(x_train)
+    x_ts = vec.transform(x_test)
+
+    sm = RandomOverSampler(random_state=22)
+
+    X_train_res, y_train_res = sm.fit_sample(x_tr, y_train)
     #Naive Bayes test
     scores = {'Accuracy': make_scorer(accuracy_score),
               'Precision': make_scorer(precision_score),
@@ -116,98 +304,18 @@ for ep in range(1, 2):
     #NB = BernoulliNB()
 
     #NB = GaussianNB()
-    NB.fit(x_train,y_train)
+    NB.fit(X_train_res,y_train_res)
+    ex = NB.predict(X_train_res)
 
-    pred_linear = NB.predict(x_test)
+    cross = cross_val_score(NB,X_train_res,y_train_res,cv=10)
+    print(round(cross.mean(),2))
+    print(round(cross.std(),2))
+
+    pred_linear = NB.predict(x_ts)
+    print(accuracy_score(ex,y_train_res))
     print(accuracy_score(y_test, pred_linear))
     print(precision_score(y_test, pred_linear))
     print(recall_score(y_test, pred_linear))
+    print(confusion_matrix(y_test,pred_linear))
 
 
-    '''
-    xu = cross_validate(NB, x, train_target, cv=10, scoring=scores,return_train_score=True)
-    print('Training accuracy :', np.mean(xu['train_Accuracy']))
-    print('Training precision :', np.mean(xu['train_Precision']))
-    print('Training recall :', np.mean(xu['train_Recall']))
-    print('Training F1-Score :', np.mean(xu['train_F1-Score']))
-    print('\n')
-    print('Testing accuracy :', np.mean(xu['test_Accuracy']))
-    print('Testing precision :', np.mean(xu['test_Precision']))
-    print('Testing recall :', np.mean(xu['test_Recall']))
-    print('Testing F1-Score :', np.mean(xu['test_F1-Score']))
-    #NB.fit(x,train_target)
-    y_pred = NB.predict(x_test)
-
-    #print(accuracy_score(y_test,y_pred))
-   # print(precision_score(y_test,y_pred))
-    #print(recall_score(y_test,y_pred))
-    '''
-
-    test_file = pd.read_csv(
-        'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(
-            2) + ' .csv', index_col=0, encoding='utf-8-sig')
-    # test_file = test_file.sample(frac=1).reset_index(drop=True)
-    # test_file = test_file[0:00]
-    test_file['Comments'] = test_file['Comments'].astype(str)
-
-    # Remove punctuation marks and tokenize each and every word
-    test_file['Comments'] = test_file['Comments'].str.replace('[^\w\s]', '')
-
-    pos_test_file = test_file[test_file['Actual Polarity'] == 1]
-    neg_test_file = test_file[test_file['Actual Polarity'] == 0]
-    neu_test_file = test_file[test_file['Actual Polarity'] == 2]
-
-    train_test = pd.concat([pos_test_file, neg_test_file])
-    train_test = train_test.reset_index(drop=True)
-    # train_test = train_test.sample(frac = 1)
-
-    comtest_array = []
-
-    for i in range(0, int(train_test.shape[0])):
-        sen = train_test['Comments'][i]
-        comtest_array = comment_cleaner(sen, comtest_array)
-
-    # ela_2 = comtest_array[0:300]
-    veca = TfidfVectorizer(analyzer='word', preprocessor=return_back_df, tokenizer=return_back_df, ngram_range=(1, 2),
-                          use_idf=True, norm='l2')
-    xe = vec.transform(comtest_array)
-    # print(xe)
-    ye = train_test['Actual Polarity'][0:train_test.shape[0]]
-    # print(ye)
-    '''
-    res = x.todense()
-    ges = res.tolist()
-    vo = vec.get_feature_names()
-
-    tval = pd.DataFrame(ges, columns=vo)
-    sum = tval.sum(numeric_only=True)
-
-    sum.sort_values(ascending=False)
-    normalized = sum / sum.max()
-    print(normalized.sort_values(ascending=False))
-    '''
-    # xe_train, xe_test, ye_train, ye_test = train_test_split(xe, ye, test_size=0.2, random_state=0, stratify=ye)
-    # print(xe_test)
-    # print(ye_test)
-
-    nb = MultinomialNB()
-    nb.fit(x,train_target)
-    x_pred = nb.predict(xe)
-    #xes = cross_validate(NB,xe,ye,cv=10,return_train_score=True)
-    #print(xes)
-    print(accuracy_score(ye, x_pred))
-    print(precision_score(ye, x_pred))
-    print(recall_score(ye, x_pred))
-    '''
-    da = {'Comments': train_test['Comments'],'Actual Polarity':x_pred}
-    xool = pd.DataFrame(da)
-    print(xool.head())
-    #print(classification_report(ye,x_pred,target_names=['Negative','Positive','Neutral']))
-    '''
-    '''
-    er = []
-    ur = comment_cleaner('uncanny isekai',er)
-    ar = vec.transform(ur)
-    s = NB.predict(ar)
-    print(s)
-    '''

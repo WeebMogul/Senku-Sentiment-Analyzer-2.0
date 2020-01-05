@@ -1,7 +1,7 @@
 import pandas as pd
 import emoji
 
-Stone_anime_max_ep = 2
+Stone_anime_max_ep = 25
 
 def remove_emoji(text):
     return emoji.get_emoji_regexp().sub(u'',text)

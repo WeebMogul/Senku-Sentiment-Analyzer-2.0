@@ -3,14 +3,15 @@ import nltk
 import numpy as np
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.model_selection import train_test_split,cross_validate,GridSearchCV
-from sklearn.metrics import make_scorer,precision_score,recall_score,f1_score,accuracy_score
+from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
+from sklearn.model_selection import train_test_split,cross_validate,GridSearchCV,cross_val_score
+from sklearn.metrics import make_scorer,precision_score,recall_score,f1_score,accuracy_score,confusion_matrix
 from sklearn.utils import resample,shuffle
 import pandas as pd
 import string
 import matplotlib.pyplot as pypl
 from imblearn.over_sampling import ADASYN, SMOTE, RandomOverSampler
+
 contract = {
 "ain't": "is not",
 "aren't": "are not",
@@ -160,69 +161,129 @@ def comment_cleaner(comm, comment_array):
         lemmas = lemma.lemmatize(POS_words[i][0], pos=penntag(POS_words[i][1]))
         temp_comm.append(lemmas)
     megos = ' '.join(word for word in temp_comm)
+    #print(temp_comm)
     return megos
 
 
 for ep in range(1, 2):
-    # kaguya_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode ' +str(1)+' .csv'
-
-    # df1 = pd.read_csv('D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(1) + ' .csv',index_col=0, encoding='utf-8-sig')
-    # df2 = pd.read_csv('D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(2) + ' .csv',index_col=0, encoding='utf-8-sig')
-    # df3 = pd.read_csv('D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(23) + ' .csv',index_col=0, encoding='utf-8-sig')
     df1 = pd.read_csv(
-        'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode 1 .csv',
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 1 Comment list with Sentiment rating.csv',
         index_col=0, encoding='utf-8-sig')
     df2 = pd.read_csv(
-        'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode 2 .csv',
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 2 Comment list with Sentiment rating.csv',
         index_col=0, encoding='utf-8-sig')
     df3 = pd.read_csv(
-        'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode 3 .csv',
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 3 Comment list with Sentiment rating.csv',
         index_col=0, encoding='utf-8-sig')
     df4 = pd.read_csv(
-        'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Kaguya-sama cleaned\Kaguya-sama Episode 4 .csv',
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 4 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df5 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 5 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df6 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 6 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df7 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 7 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df8 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 8 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df9 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 9 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df10 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 10 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df11 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 11 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df12 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 12 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df13 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 13 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df14 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 14 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df15 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 15 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df16 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 16 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df17 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 17 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df18 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 18 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df19 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 19 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df20 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 20 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df21 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 21 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df22 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 22 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df23 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 23 Comment list with Sentiment rating.csv',
+        index_col=0, encoding='utf-8-sig')
+    df24 = pd.read_csv(
+        'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 24 Comment list with Sentiment rating.csv',
         index_col=0, encoding='utf-8-sig')
 
-    df12 = pd.concat([df1, df2, df3
-                      ])
+    df12 = pd.concat(
+        [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19, df20,
+         df21, df22, df23, df24
+         ])
     train_array = []
     test_array = []
     train_target = []
     comtest_array = []
     # df = df.sample(frac=1)
     # Convert dataframe values into string
-    df12 = df12[['Comments', 'Actual Polarity']]
-    df12['Comments'] = df12['Comments'].astype(str)
-    df12['Length'] = df12['Comments'].apply(len)
-    df12 = df12[df12['Length'] > 5]
-    df12['Comments'] = df12['Comments'].apply(lambda s: comment_cleaner(s, train_array))
+    df12 = df12[['Comment', 'Sentiment Rating']]
+    df12['Comment'] = df12['Comment'].astype(str)
+    df12['Length'] = df12['Comment'].apply(len)
+   # df12 = df12[df12['Length'] > 5]
+    df12['Comment'] = df12['Comment'].str.replace('[^\w\s]', ' ')
+    df12['Comment'] = df12['Comment'].str.replace('[\d+]', ' ')
+    df12['Comment'] = df12['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
+    df12['Comment'] = df12['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
     # Remove punctuation marks and tokenize each and every word
-    df12['Comments'] = df12['Comments'].str.replace('[^\w\s]', ' ')
-    df12['Comments'] = df12['Comments'].str.replace('[\d+]', ' ')
-    df12['Comments'] = df12['Comments'].str.replace('(^| ).(( ).)*( |$)', ' ')
+    
 
     # Split into positive and negative datasets
-    pos_df = df12[df12['Actual Polarity'] == 1]
-    neg_df = df12[df12['Actual Polarity'] == 0]
-    neu_df = df12[df12['Actual Polarity'] == 2]
+    pos_df = df12[df12['Sentiment Rating'] == 1]
+    neg_df = df12[df12['Sentiment Rating'] == 0]
+    neu_df = df12[df12['Sentiment Rating'] == 2]
 
 
     #neu_df['Comment'] = neu_df['Comment'].
     df_len = len(pos_df)
 
+    train_df = pd.concat([pos_df, neg_df])
     #train_df = pd.concat([pos_df, neg_df,neu_df])
-    train_df = pd.concat([pos_df, neg_df,neu_df])
     train_df = train_df.reset_index(drop=True)
 
-    y = train_df['Actual Polarity']
+    y = train_df['Sentiment Rating']
 
-    x_train, x_test, y_train, y_test = train_test_split(train_df['Comments'], train_df['Actual Polarity'], test_size=0.2,random_state=22)
+    x_train, x_test, y_train, y_test = train_test_split(train_df['Comment'], train_df['Sentiment Rating'], test_size=0.2,random_state=22)
 
-    vec = TfidfVectorizer(ngram_range=(1, 2), max_features=20000, sublinear_tf=True)
+    vec = TfidfVectorizer(ngram_range=(1, 1),sublinear_tf=True)
+    #vec = CountVectorizer(ngram_range=(1, 2))
     x_tr = vec.fit_transform(x_train)
     x_ts = vec.transform(x_test)
 
-    sm = RandomOverSampler(random_state=77)
+    sm = RandomOverSampler(random_state=22)
 
     X_train_res, y_train_res = sm.fit_sample(x_tr, y_train)
 
@@ -236,155 +297,21 @@ for ep in range(1, 2):
            'recall': make_scorer(recall_score),
            'f1_Score': make_scorer(f1_score)
           }
-''''
-grid_params = {'n_neighbors':np.arange(1,30),'weights':['distance'],'metric':['manhattan']}
-er = GridSearchCV(KNeighborsClassifier(),grid_params,cv=10,verbose=1)
-gu = er.fit(x_tr,y_train)
 
-print(gu.best_params_)
-print(gu.best_estimator_)
-print(gu.best_score_)
-'''
-for i in range(1,101):
- '''
- cv_knn = cross_validate(KNeighborsClassifier(i),X_train_res, y_train_res, cv=10, return_train_score=True,scoring=scores)
- print('Nearest Neighbour ',str(i))
- print('Training accuracy :', np.mean(cv_knn['train_accuracy']))
- print('Training precision :', np.mean(cv_knn['train_precision']))
- print('Training recall :', np.mean(cv_knn['train_recall']))
- print('Testing accuracy :', np.mean(cv_knn['test_accuracy']))
- print('Testing precision :', np.mean(cv_knn['test_precision']))
- print('Testing recall :', np.mean(cv_knn['test_recall']))
- print('\n')
- '''
- modelKnn = KNeighborsClassifier(n_neighbors=i)
- modelKnn.fit(X_train_res, y_train_res)
- yp = modelKnn.predict(X_train_res)
+    for i in range(1,50):
+     modelKnn = KNeighborsClassifier(n_neighbors=i)#20
+     modelKnn.fit(X_train_res, y_train_res)
+     yp = modelKnn.predict(X_train_res)
+     pred_linear = modelKnn.predict(x_ts)
+     print(accuracy_score(y_train_res, yp))
+     print(accuracy_score(y_test, pred_linear))
+     print(precision_score(y_test, pred_linear,average=None))
+     print(recall_score(y_test, pred_linear,average=None))
+     print(confusion_matrix(y_test,pred_linear))
 
- pred_linear = modelKnn.predict(x_ts)
- print(i)
- print(accuracy_score(y_train_res, yp))
- print(accuracy_score(y_test, pred_linear))
- print(precision_score(y_test, pred_linear,average=None))
- print(recall_score(y_test, pred_linear,average=None))
-
-'''
- print('Train accuracy neighbours ' + str(i) + ': ' + str(accuracy_score(y_train, yp)))
- print('Train F1 neighbours ' + str(i) + ': ' + str(f1_score(y_train, yp,average=None)))
- print('Test accuracy neighbours ' + str(i)+ ': ' + str(accuracy_score(y_test,y_predict)))
- print('Test F1 neighbours ' + str(i) + ': ' + str(f1_score(y_test, y_predict,average=None)))
-
-# print('For neighbours ' + str(i) + ': ' + str(precision_score(y_test,y_predict)))
-# print('For neighbours ' + str(i) + ': ' + str(recall_score(y_test,y_predict)))
- print('\n')
-
-ur = []
-ur = comment_cleaner('The isekai genre is very good',ur)
-er = vec.transform(ur)
-ae = modelKnn.predict(er)
-print(ae)
-
-test_file = pd.read_csv('D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Manually determines\Tensei Slime cleaned\Tensei Slime Episode ' + str(4) + ' .csv',index_col=0,encoding='utf-8-sig')
-# test_file = test_file.sample(frac=1).reset_index(drop=True)
-test_file['Comments'] = test_file['Comments'].astype(str)
-
-# Remove punctuation marks and tokenize each and every word
-test_file['Comments'] = test_file['Comments'].str.replace('[^\w\s]', '')
-
-pos_test_file = test_file[test_file['Actual Polarity'] == 1]
-neg_test_file = test_file[test_file['Actual Polarity'] == 0]
-
-# pos_test_file = test_file[test_file['Polarity'] == 1]
-# neg_test_file = test_file[test_file['Polarity'] == 0]
-neu_test_file = df[(df['Actual Polarity'] == 2) & ((df['Polarity'] == 1) | (df['Polarity'] == 0))]
-
-#print(neg_test_file['Comments'])
-train_test = pd.concat([pos_test_file,neg_test_file,neu_test_file])
-train_test = train_test.reset_index(drop=True)
-# train_test = train_test.sample(frac = 1)
-
-# print(train_test['Polarity'])
-# print(train_test.shape[0])
-
-ela = []
-for i in range(0,int(train_test.shape[0])):
-     sen = train_test['Comments'][i]
-     elao = comment_cleaner(sen,ela)
-#print(ela)
-
-xe = vec.transform(elao)
-# print(xe)
-ye = train_test['Actual Polarity'][0:train_test.shape[0]]
- #print(ye)
-
-aac = []
-ars = []
-res = []
-#e_train,xe_test,ye_train,ye_test = train_test_split(xe,ye,test_size=0.1,random_state=0)
-# print(xe_test)
-# print(ye_test)
-n = np.arange(1,50)
-for i in range(1,2):
- mk = KNeighborsClassifier(n_neighbors=1)
- mk.fit(x,train_target)
- x_pred = mk.predict(xe)
-# print(x_precallisiond)
- aac.append(accuracy_score(ye,x_pred))
- #ars.append(precision_score(ye,x_pred))
-# res.append(recall_score(ye,x_pred))
-print(aac)
-'''
-'''
-pypl.figure()
-pypl.plot(n,aac)
-pypl.title('accuracyuracy of each Knn neighbour for Kaguya-Sama episode '+str(ep))
-pypl.xlabel('K-Nearest Neighbour')
-pypl.ylabel('accuracyuracy rate')
-pypl.show()
-'''
-'''
-
- for i in range(0,train_test.shape[0]):
-     if (x_pred[i] == 0):
-      print(train_test['Comments'][i],' : ',x_pred[i])
- #test_df = train_df.sample(frac=1).reset_index(drop=True)[0:5]
- 
-     comms = ['best girl','The OP is banger','Fuck this']
-     labels = [1,1,0]
-     data = {'Comment':comms,'Actual Polarity':labels}
-     test_df = pd.DataFrame(data)
-
-     elp = []
-     for i in range(0, int(test_df.shape[0])):
-         sente = test_df['Comment'][i]
-         #print(sente)
-         train_wordsa = comment_cleaner(sente, elp)
-
-     #print(train_wordsa)
-     xe = vec.transform(train_wordsa)
-     ye = test_df['Actual Polarity'][0:int(test_df.shape[0])]
-     x_precallisiond = modelKnn.precallisiondict(xe)
-     print(x_precallisiond)
-     print(accuracyuracy_score(x_precallisiond,ye))
-     '''
-  #cv_knn = cross_validate(modelKnn,x,y,cv=10,scoring=scores)
-
- #accuracy.append(np.mean(cv_knn['test_accuracyuracy ']))
- #print('accuracyuracy : ',np.mean(cv_knn['test_accuracyuracy ']))
-
-     #precallision.append(np.mean(cv_knn['test_precallisioncision ']))
-     #print('precallisioncision : ',np.mean(cv_knn['test_precallisioncision ']))
-
-    #recall.append(np.mean(cv_knn['test_recallall ']))
-     #print('recallall : ',np.mean(cv_knn['test_recallall ']))
-
-    #  f1_score.append(np.mean(cv_knn['test_f1_score-Score ']))
-     #print('f1_score Measure: ',np.mean(cv_knn['test_f1_score-Score ']))
-
-    #  error.append(1 - accuracy[i])
-    # print('erroror rate',1- accuracy[i])
-    # print("\n")
-
+    #cross = cross_val_score(modelKnn,X_train_res,y_train_res,cv=10)
+    #print(round(cross.mean(),2))
+    #print(round(cross.std(),2))
 
 
 
