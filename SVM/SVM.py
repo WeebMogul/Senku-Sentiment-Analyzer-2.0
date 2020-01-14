@@ -255,7 +255,7 @@ for ep in range(1, 2):
 
 
 
-    df12 = pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,df22,df23,df24
+    df12 = pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12
                       ])
     train_array = []
     test_array = []
@@ -291,7 +291,7 @@ for ep in range(1, 2):
     x_train, x_test, y_train, y_test = train_test_split(train_df['Comment'], train_df['Sentiment Rating'],
                                                         test_size=0.2, random_state=22)
 
-    vec = TfidfVectorizer(ngram_range=(1, 1),sublinear_tf=True)
+    vec = TfidfVectorizer(ngram_range=(1, 3),sublinear_tf=True)
     # vec = CountVectorizer(ngram_range=(1, 2))
     x_tr = vec.fit_transform(x_train)
     x_ts = vec.transform(x_test)
@@ -308,24 +308,26 @@ for ep in range(1, 2):
 
 
 # Train SVM model
-    C = [0.00001,0.0001,0.001, 0.01, 0.1, 1.0, 10.0,100.0,1000.0]
-    gammas = [0.00001,0.0001,0.001, 0.01, 0.1]
+    C = [0.01, 0.1, 1.0, 10.0,100.0]
+    gammas = [0.01, 0.1, 1.0, 10.0,100.0]
     #iter = [1,10,50,100,500,1000]
     params = {'C': C,'gamma':gammas}
 
-
-    clas_linear = svm.SVC(kernel='linear',C=100.0,gamma=1e-05,class_weight='balanced')
+    clas_linear = svm.SVC(kernel='linear',C=10.0,gamma=0.01)
     clas_linear.fit(X_train_res,y_train_res)
+    train_linear = clas_linear.predict(X_train_res)
     pred_linear = clas_linear.predict(x_ts)
+    print(accuracy_score(y_train_res,train_linear))
     print(accuracy_score(y_test, pred_linear))
     print(precision_score(y_test, pred_linear))
     print(recall_score(y_test, pred_linear))
     print(confusion_matrix(y_test,pred_linear))
     '''
-    grid = GridSearchCV(svm.SVC(kernel='linear',class_weight='balanced'),cv=10,param_grid=params, refit = True)
+    grid = GridSearchCV(svm.SVC(kernel='linear'),cv=10,param_grid=params, refit = True)
     grid.fit(X_train_res, y_train_res)
     print(grid.best_params_)
     #print(grid.best_estimator_)
     '''
+
 
 

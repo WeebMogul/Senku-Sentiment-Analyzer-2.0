@@ -240,8 +240,7 @@ for ep in range(1, 2):
         index_col=0, encoding='utf-8-sig')
 
     df12 = pd.concat(
-        [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19, df20,
-         df21, df22, df23, df24
+        [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,df22,df23,df24
          ])
     train_array = []
     test_array = []

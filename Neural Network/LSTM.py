@@ -241,8 +241,8 @@ df24 = pd.read_csv(
     index_col=0, encoding='utf-8-sig')
 
 df12 = pd.concat(
-    [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19, df20,
-     df21, df22, df23, df24
+    [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19,
+     df20, df21, df22, df23, df24
      ])
 train_array = []
 test_array = []
@@ -270,8 +270,8 @@ neu_df = df12[df12['Sentiment Rating'] == 2]
     #neu_df['Comment'] = neu_df['Comment'].
 df_len = len(pos_df)
 
-train_df = pd.concat([pos_df, neg_df])
-    #train_df = pd.concat([pos_df, neg_df,neu_df])
+#train_df = pd.concat([pos_df, neg_df])
+train_df = pd.concat([pos_df, neg_df,neu_df])
 train_df = train_df.reset_index(drop=True)
 
 x = train_df['Comment'].values
@@ -280,17 +280,6 @@ print(train_df.shape)
 
 x_train, x_test, y_train, y_test = train_test_split(x, y, test_size=0.2,random_state=22)
 
-'''
-vec = TfidfVectorizer(ngram_range=(1, 1))
-#vec = CountVectorizer(ngram_range=(1, 2))
-x_tr = vec.fit_transform(x_train)
-x_ts = vec.transform(x_test)
-
-sm = RandomOverSampler(random_state=22)
-
-X_train_res, y_train = sm.fit_sample(x_tr, y_train)
-
-'''
 tokenizer = Tokenizer(num_words = 20000)
 tokenizer.fit_on_texts(train_df['Comment'])
 
@@ -308,7 +297,7 @@ X_test = keras.preprocessing.sequence.pad_sequences(X_test, padding='post', maxl
 
 
 vocab = len(tokenizer.word_index) + 1
-
+'''
 input_dim = X_train.shape[1]
 model = keras.Sequential()
 model.add(keras.layers.Embedding(input_dim = vocab,output_dim = 50,input_length = 150))
@@ -317,13 +306,23 @@ model.add(keras.layers.Bidirectional(keras.layers.LSTM(150)))#150
 model.add(keras.layers.Dense(1, activation = 'sigmoid'))
 model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 model.summary()
+'''
+
+input_dim = X_train.shape[1]
+model = keras.Sequential()
+model.add(keras.layers.Embedding(input_dim = vocab,output_dim = 50,input_length = 150))
+model.add(keras.layers.SpatialDropout1D(0.2))
+model.add(keras.layers.Bidirectional(keras.layers.LSTM(150)))#150
+model.add(keras.layers.Dense(3, activation = 'softmax'))
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+model.summary()
 
 
 #print(type(x_train))
 #print(type(y_train))
 y_train = np.asarray(y_train)
 y_test = np.asarray(y_test)
-fitmodel = model.fit(X_train, y_train, epochs=5, batch_size=15, validation_data = (X_test,y_test), verbose=1)#'400'
+fitmodel = model.fit(X_train, y_train, epochs=10, batch_size=400, validation_data = (X_test,y_test), verbose=1)#'400'
 
 results = model.evaluate(X_test, y_test)
 print(results)
@@ -362,3 +361,6 @@ print(confusion_matrix)
 
 prima = model.predict_classes(X_test)
 print(confusion_matrix(y_test,prima))
+
+#df13['Comment'] = df13['Comment'].astype(str)
+#df13['Comment'] = df13['Comment'].apply(lambda x: )

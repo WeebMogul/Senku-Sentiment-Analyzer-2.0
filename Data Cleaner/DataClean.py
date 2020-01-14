@@ -27,11 +27,11 @@ for i in range(1,Stone_anime_max_ep):
  df['Comment'] = df['Comment'].str.replace('\r', ' ')
  df['Comment'] = df['Comment'].str.replace('\n','  ')
 
- df['Comment'] = df['Comment'].str.replace(r'\[|\]|\)', '')
+ df['Comment'] = df['Comment'].str.replace(r'\[|\]|\)', ' ')
 
- df['Comment'] = df['Comment'].str.replace(r'\(\/s.|\(|\^|\☞ﾟヮﾟ☞|°|ʖ|¯|_|ツ|_|/|͡', '')
+ df['Comment'] = df['Comment'].str.replace(r'\(\/s.|\(|\^|\☞ﾟヮﾟ☞|°|ʖ|¯|_|ツ|_|/|͡', ' ')
  df['Comment'] = df['Comment'].str.replace(r'|͜ ','')
- df['Comment'] = df['Comment'].str.replace(r'ゴ|ＴＨＩＳ 　ＭＵＳＴ 　ＢＥ 　ＴＨＥ 　ＷＯＲＫ 　ＯＦ 　ＡＮ 　ＥＮＥＭＹ 「ＳＴＡＮＤ」！！ ','')
+ df['Comment'] = df['Comment'].str.replace(r'ゴ|ＴＨＩＳ 　ＭＵＳＴ 　ＢＥ 　ＴＨＥ 　ＷＯＲＫ 　ＯＦ 　ＡＮ 　ＥＮＥＭＹ 「ＳＴＡＮＤ」！！ ',' ')
  df['Comment'] = df['Comment'].str.replace(r'\*|\~|\#|\\', ' ')
  df['Comment'] = df['Comment'].str.replace('&x200B', ' ')
  df['Comment'] = df['Comment'].str.replace('& x200B', ' ')

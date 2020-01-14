@@ -2,11 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4a069b7e-0e98-40da-9fa0-abad4ab04a7f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Data Visualization/Most frequent words.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 1 Comment list with Sentiment rating.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Neural Network/LSTM.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data Visualization/Topic Modelling Chart.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/DataClean.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/DataClean.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 1 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 1 Comment list (cleaned).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 10 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 10 Comment list (cleaned).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 11 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 11 Comment list (cleaned).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 12 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 12 Comment list (cleaned).csv" afterDir="false" />
@@ -30,10 +29,39 @@
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 7 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 7 Comment list (cleaned).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 8 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 8 Comment list (cleaned).csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 9 Comment list (cleaned).csv" beforeDir="false" afterPath="$PROJECT_DIR$/Data Cleaner/Dr.Stone Episode 9 Comment list (cleaned).csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Data Visualization/Most frequent words.py" beforeDir="false" afterPath="$PROJECT_DIR$/Data Visualization/Most frequent words.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/K-Nearest Neighbours/K-Nearest Neighbours anime.py" beforeDir="false" afterPath="$PROJECT_DIR$/K-Nearest Neighbours/K-Nearest Neighbours anime.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lexicon-based Analysis/Vader Lexicon.py" beforeDir="false" afterPath="$PROJECT_DIR$/Lexicon-based Analysis/Vader Lexicon.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 1 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 1 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 10 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 10 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 11 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 11 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 12 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 12 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 13 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 13 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 14 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 14 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 15 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 15 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 16 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 16 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 17 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 17 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 18 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 18 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 19 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 19 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 2 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 2 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 20 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 20 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 21 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 21 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 22 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 22 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 23 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 23 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 24 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 24 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 3 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 3 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 4 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 4 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 5 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 5 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 6 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 6 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 7 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 7 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 8 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 8 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 9 Comment list with Sentiment rating.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr. Stone/Dr.Stone Episode 9 Comment list with Sentiment rating.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr.Stone Episode 1 Comment list with Sentiment ratings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr.Stone Episode 1 Comment list with Sentiment ratings.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Manually determined sentences/Dr.Stone Episode 2 Comment list with Sentiment ratings.csv" beforeDir="false" afterPath="$PROJECT_DIR$/Manually determined sentences/Dr.Stone Episode 2 Comment list with Sentiment ratings.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Naive Bayes/Naive Bayes.py" beforeDir="false" afterPath="$PROJECT_DIR$/Naive Bayes/Naive Bayes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Neural Network/LSTM.py" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Network/LSTM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Neural Network/Neural Networks.py" beforeDir="false" afterPath="$PROJECT_DIR$/Neural Network/Neural Networks.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SVM/SVM.py" beforeDir="false" afterPath="$PROJECT_DIR$/SVM/SVM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SVM/testSVM.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,7 +90,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.Most frequent words">
+  <component name="RunManager" selected="Python.Neural Networks">
     <configuration name="LSTM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Senku Sentiment Analyzer 2.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -138,7 +166,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\Python\Senku Sentiment Analyzer 2.0\Neural Network\Neural Networks.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Neural Network/Neural Networks.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -147,7 +175,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="SVM" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="Vader Lexicon" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="Senku Sentiment Analyzer 2.0" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -155,11 +183,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SVM" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Lexicon-based Analysis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SVM/SVM.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Lexicon-based Analysis/Vader Lexicon.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,11 +198,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.Most frequent words" />
-        <item itemvalue="Python.LSTM" />
         <item itemvalue="Python.Neural Networks" />
+        <item itemvalue="Python.LSTM" />
+        <item itemvalue="Python.Most frequent words" />
+        <item itemvalue="Python.Vader Lexicon" />
         <item itemvalue="Python.Naive Bayes" />
-        <item itemvalue="Python.SVM" />
       </list>
     </recent_temporary>
   </component>
@@ -215,26 +243,26 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="424" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1577542397642" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1578156113967">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1578229540863">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578156113967" />
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom" timestamp="1578218992916">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1578229540863" />
+    <state width="1515" height="212" key="GridCell.Tab.0.bottom" timestamp="1578511495223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
-    <state width="1515" height="210" key="GridCell.Tab.0.center" timestamp="1578218992916">
+    <state width="1515" height="212" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1578511495223" />
+    <state width="1515" height="212" key="GridCell.Tab.0.center" timestamp="1578511495223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
-    <state width="1515" height="210" key="GridCell.Tab.0.left" timestamp="1578218992915">
+    <state width="1515" height="212" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1578511495223" />
+    <state width="1515" height="212" key="GridCell.Tab.0.left" timestamp="1578511495223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578218992915" />
-    <state width="1515" height="210" key="GridCell.Tab.0.right" timestamp="1578218992916">
+    <state width="1515" height="212" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1578511495223" />
+    <state width="1515" height="212" key="GridCell.Tab.0.right" timestamp="1578511495223">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1515" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578218992916" />
+    <state width="1515" height="212" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1578511495223" />
     <state width="1515" height="261" key="GridCell.Tab.1.bottom" timestamp="1578169751059">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -255,13 +283,13 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="56" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1577524083344" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1578217338779">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1578499665273">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578217338779" />
-    <state x="0" y="0" width="740" height="824" key="find.popup" timestamp="1577542577852">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1578499665273" />
+    <state x="776" y="0" width="740" height="824" key="find.popup" timestamp="1578485893455">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="0" y="0" width="740" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1577542577852" />
+    <state x="776" y="0" width="740" height="824" key="find.popup/0.0.1536.824@0.0.1536.824" timestamp="1578485893455" />
   </component>
 </project>

@@ -1,25 +1,21 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as pypl
+from sklearn import svm
+import nltk
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.decomposition import  LatentDirichletAllocation
+from sklearn.naive_bayes import MultinomialNB
 import nltk
 import numpy as np
 from nltk.corpus import stopwords
-from sklearn.utils import resample,shuffle
+from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
-from sklearn.feature_extraction.text import TfidfVectorizer
+import imblearn
+import string
+from sklearn.feature_extraction.text import TfidfVectorizer,CountVectorizer
 from sklearn.model_selection import train_test_split, cross_validate,cross_val_score
 from sklearn.metrics import make_scorer, precision_score, recall_score,f1_score, accuracy_score,confusion_matrix
-import pandas as pd
-import string
-import numpy as np
-from sklearn.naive_bayes import MultinomialNB,BernoulliNB,GaussianNB
-from sklearn.pipeline import Pipeline
-from imblearn.over_sampling import ADASYN, SMOTE, RandomOverSampler
-
-
-import matplotlib.pyplot as pypl
-
-stopword = set(stopwords.words('english'))
-exclude = set(string.punctuation)
-lemma = WordNetLemmatizer()
 
 contract = {
 "ain't": "is not",
@@ -150,6 +146,9 @@ contract = {
 # kaguya_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Kaguya-sama cleaned\Cleaned_Kaguya_sama_Episode_' + str(1) + '_Comment_list.csv'
 # slime_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Tensei Slime cleaned\Cleaned_Tensei_Slime_Episode_' + str(ep) + '_Comment_list.csv'
 
+stopword = set(stopwords.words('english'))
+exclude = set(string.punctuation)
+lemma = WordNetLemmatizer()
 
 def penntag(pen):
     morphy_tag = {'NN': 'n', 'JJ': 'a',
@@ -247,74 +246,63 @@ for ep in range(1, 2):
         'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 24 Comment list with Sentiment rating.csv',
         index_col=0, encoding='utf-8-sig')
 
-    df12 = pd.concat(
-        [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,df22,df23,df24
-         ])
+    
+    df123 = pd.concat(
+       [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19,
+        df20, df21, df22, df23, df24
+       ])
     train_array = []
     test_array = []
     train_target = []
     comtest_array = []
     # df = df.sample(frac=1)
     # Convert dataframe values into string
-    df12 = df12[['Comment', 'Sentiment Rating']]
-    df12['Comment'] = df12['Comment'].astype(str)
-    df12['Length'] = df12['Comment'].apply(len)
-    #df12 = df12[df12['Length'] > 5]
-    df12['Comment'] = df12['Comment'].apply(lambda s: comment_cleaner(s, train_array))
+    df123 = df123[['Comment', 'Sentiment Rating']]
+    df123['Comment'] = df123['Comment'].astype(str)
+    df123['Length'] = df123['Comment'].apply(len)
+   # df123 = df123[df123['Sentiment Rating'] == 1]
+   # df123 = df123[df123['Length'] > 5]
+    df123['Comment'] = df123['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
     # Remove punctuation marks and tokenize each and every word
-    df12['Comment'] = df12['Comment'].str.replace('[^\w\s]', ' ')
-    df12['Comment'] = df12['Comment'].str.replace('[\d+]', ' ')
-    df12['Comment'] = df12['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
-
-    # Split into positive and negative datasets
-    pos_df = df12[df12['Sentiment Rating'] == 1]
-    neg_df = df12[df12['Sentiment Rating'] == 0]
-    neu_df = df12[df12['Sentiment Rating'] == 2]
-
-    # neu_df['Comment'] = neu_df['Comment'].
-    df_len = len(pos_df)
-
-    train_df = pd.concat([pos_df, neg_df,neu_df])
-    # train_df = pd.concat([pos_df, neg_df,neu_df])
-    train_df = train_df.reset_index(drop=True)
-
-    x = train_df['Comment'].values
-    y = train_df['Sentiment Rating'].values
-
-    x_train, x_test, y_train, y_test = train_test_split(x, y,
-                                                        test_size=0.2, random_state=22)
-
-    vec = TfidfVectorizer(ngram_range=(1, 2),sublinear_tf=True)
-    # vec = CountVectorizer(ngram_range=(1, 2))
-    x_tr = vec.fit_transform(x_train)
-    x_ts = vec.transform(x_test)
-
-    sm = RandomOverSampler(random_state=22)
-
-    X_train_res, y_train_res = sm.fit_sample(x_tr, y_train)
-    #Naive Bayes test
-    scores = {'Accuracy': make_scorer(accuracy_score),
-              'Precision': make_scorer(precision_score),
-              'Recall': make_scorer(recall_score),
-              'F1-Score': make_scorer(f1_score)
-              }
-    NB = MultinomialNB()
-    #NB = BernoulliNB()
-
-    #NB = GaussianNB()
-    NB.fit(X_train_res,y_train_res)
-    ex = NB.predict(X_train_res)
-
-    cross = cross_val_score(NB,X_train_res,y_train_res,cv=10)
-    print(round(cross.mean(),2))
-    print(round(cross.std(),2))
-
-    pred_linear = NB.predict(x_ts)
-    print(accuracy_score(ex,y_train_res))
-    print(accuracy_score(y_test, pred_linear))
-    #print(precision_score(y_test, pred_linear,average='None'))
-    #print(recall_score(y_test, pred_linear))
-    print(confusion_matrix(y_test,pred_linear))
+    df123['Comment'] = df123['Comment'].str.replace('[^\w\s]', ' ')
+    df123['Comment'] = df123['Comment'].str.replace('[\d+]', ' ')
+    df123['Comment'] = df123['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
 
 
+    x = df123['Comment'].values
+
+    #vec = TfidfVectorizer(ngram_range=(1, 1), sublinear_tf=True)
+    vec = CountVectorizer(ngram_range=(1, 1))
+    x_tr = vec.fit_transform(x)
+    feature_names = np.array(vec.get_feature_names())
+    print("Haha")
+    lda100 = LatentDirichletAllocation(n_components=50)
+    print("Haha")
+    document_topics100 = lda100.fit_transform(x_tr)
+    print(document_topics100)
+    sorting = np.argsort(lda100.components_, axis=1)[:, ::-1]
+
+    fig2, ax = pypl.subplots(1, 2, figsize=(10, 10))
+    topic_names = ["{:>2} ".format(i) + " ".join(words)
+               for i, words in enumerate(feature_names[sorting[:, :2]])]
+    print("Haha")
+    for col in [0, 1]:
+      start = col * 25
+      end = (col + 1) * 25
+      ax[col].barh(np.arange(25), np.sum(document_topics100, axis=0)[start:end])
+      tes = list(np.sum(document_topics100, axis=0)[start:end])
+      print(type(tes))
+
+      ax[col].set_yticks(np.arange(25))
+      ax[col].set_yticklabels(topic_names[start:end], ha="left", va="top")
+      ax[col].invert_yaxis()
+
+      #ax[col].set_xlim(0, 1500)
+      ax[col].set_xlim(0, 600)
+      yax = ax[col].get_yaxis()
+      xax=ax[col].get_xaxis()
+      yax.set_tick_params(pad=130)
+    print("Haha")
+    pypl.tight_layout()
+    pypl.show()

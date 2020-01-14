@@ -146,6 +146,8 @@ contract = {
 }
 
 stopword = set(stopwords.words('english'))
+stopword.update(('know','really','say','way','thing','need','look','want','actually','use','like', 'think', 'would',
+                 'use','muda'))
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
@@ -161,26 +163,106 @@ def comment_cleaner(comm, comment_array):
     megos = ' '.join(word for word in temp_comm)
     return megos
 
-for i in range(1, 25):
-    df1 = pd.read_csv('D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode ' + str(i) + ' Comment list with Sentiment rating.csv',encoding = 'utf-8-sig')
-    
-    str_comments = df1['Comment'].astype(str)
-    str_length = len(str_comments.index)
+df1 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 1 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df2 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 2 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df3 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 3 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df4 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 4 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df5 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 5 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df6 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 6 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df7 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 7 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df8 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 8 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df9 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 9 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df10 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 10 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df11 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 11 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df12 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 12 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df13 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 13 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df14 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 14 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df15 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 15 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df16 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 16 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df17 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 17 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df18 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 18 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df19 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 19 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df20 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 20 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df21 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 21 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df22 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 22 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df23 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 23 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
+df24 = pd.read_csv(
+    'D:\Python\Senku Sentiment Analyzer 2.0\Manually determined sentences\Dr. Stone\Dr.Stone Episode 24 Comment list with Sentiment rating.csv',
+    index_col=0, encoding='utf-8-sig')
 
-    for i in range(0,int(str_length)):
-        comments.insert(i-1,str_comments[i])
+df123 = pd.concat(
+    [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19,
+     df20, df21, df22, df23, df24
+     ])
+train_array = []
+test_array = []
+train_target = []
+comtest_array = []
+    # df = df.sample(frac=1)
+    # Convert dataframe values into string
+df123 = df123[['Comment', 'Sentiment Rating']]
+df123['Comment'] = df123['Comment'].astype(str)
+df123['Length'] = df123['Comment'].apply(len)
+df123 = df123[df123['Sentiment Rating'] == 2]
+   # df123 = df123[df123['Length'] > 5]
+df123['Comment'] = df123['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
-data = {'Comment':comments}
-total_comments = pd.DataFrame(data)
+    # Remove punctuation marks and tokenize each and every word
+df123['Comment'] = df123['Comment'].str.replace('[^\w\s]', ' ')
+df123['Comment'] = df123['Comment'].str.replace('[\d+]', ' ')
+df123['Comment'] = df123['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
 
-total_comments['Comment'] = total_comments['Comment'].apply(lambda s: comment_cleaner(s, col))
-total_comments['Comment'] = total_comments['Comment'].str.replace('[^\w\s]', ' ')
-total_comments['Comment'] = total_comments['Comment'].str.replace('[\d+]', ' ')
-total_comments['Comment'] = total_comments['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
 
-totals = total_comments['Comment']
+totals = df123['Comment']
 
-cou = CountVectorizer(stop_words='english').fit(totals)
+cou = CountVectorizer(stop_words='english',ngram_range=(2,2)).fit(totals)
+#cou = TfidfVectorizer(stop_words='english',ngram_range=(1,2)).fit(totals)
 bags = cou.transform(totals)
 sum_words = bags.sum(axis=0)
 
@@ -196,10 +278,10 @@ for i in range(0,len(word_freq)):
 
 print(word_freq)
 
-y = np.arange(1,15)
+y = np.arange(1,40)
 pypl.title('Most frequent words in Dr. Stone')
-pypl.barh(y,count[:14])
-pypl.yticks(y,words[:14])
+pypl.barh(y,count[:39])
+pypl.yticks(y,words[:39])
 pypl.gca().invert_yaxis()
 pypl.show()
 
