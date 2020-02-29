@@ -18,6 +18,8 @@ from imblearn.over_sampling import ADASYN, SMOTE, RandomOverSampler
 import matplotlib.pyplot as pypl
 
 stopword = set(stopwords.words('english'))
+stopword.update(('know','really','say','way','thing','need','look','want','actually','use', 'think', 'would',
+                 'use','muda','dr','make','go','get','it','even','also','already','much','could','that','one','though','still'))
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
@@ -285,7 +287,7 @@ for ep in range(1, 2):
     x_train, x_test, y_train, y_test = train_test_split(x, y,
                                                         test_size=0.2, random_state=22)
 
-    vec = TfidfVectorizer(ngram_range=(1, 2),sublinear_tf=True)
+    vec = TfidfVectorizer(ngram_range=(1, 2),min_df=0.01,max_df=0.8,analyzer='word')
     # vec = CountVectorizer(ngram_range=(1, 2))
     x_tr = vec.fit_transform(x_train)
     x_ts = vec.transform(x_test)

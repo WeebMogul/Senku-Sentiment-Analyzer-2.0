@@ -146,8 +146,9 @@ contract = {
 }
 
 stopword = set(stopwords.words('english'))
-stopword.update(('know','really','say','way','thing','need','look','want','actually','use','like', 'think', 'would',
-                 'use','muda'))
+stopword.update(('know','really','say','way','thing','need','look','want','like','actually','use', 'think', 'would',
+                 'use','muda','dr','make','go','get','it','even','also','already','much','could','that','one','though',
+                 'still','thousand'))
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
@@ -237,8 +238,10 @@ df24 = pd.read_csv(
     index_col=0, encoding='utf-8-sig')
 
 df123 = pd.concat(
-    [df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15, df16, df17, df18, df19,
-     df20, df21, df22, df23, df24
+    [df1, df2, df3, df4,
+     #df5, df6, df7, df8, df9, df10, df11, df12, df13, df14,
+     #df15, df16, df17,
+     #df18, df19,df20, df21, df22, df23, df24
      ])
 train_array = []
 test_array = []
@@ -249,7 +252,8 @@ comtest_array = []
 df123 = df123[['Comment', 'Sentiment Rating']]
 df123['Comment'] = df123['Comment'].astype(str)
 df123['Length'] = df123['Comment'].apply(len)
-df123 = df123[df123['Sentiment Rating'] == 2]
+df123 = df123[df123['Length'] > 5]
+df123 = df123[df123['Sentiment Rating'] == 0]
    # df123 = df123[df123['Length'] > 5]
 df123['Comment'] = df123['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
@@ -261,27 +265,35 @@ df123['Comment'] = df123['Comment'].str.replace('(^| ).(( ).)*( |$)', ' ')
 
 totals = df123['Comment']
 
-cou = CountVectorizer(stop_words='english',ngram_range=(2,2)).fit(totals)
-#cou = TfidfVectorizer(stop_words='english',ngram_range=(1,2)).fit(totals)
+cou = CountVectorizer(stop_words=['know','really','say','way','thing','need','look','want','like','actually','use', 'think', 'would',
+                 'use','muda','dr','make','go','get','it','even','also','already','much','great','make','sense','could','that','one','though','still','you','re'],ngram_range=(2,2)).fit(totals)
 bags = cou.transform(totals)
 sum_words = bags.sum(axis=0)
 
 word_freq = [(word,sum_words[0,idx]) for word,idx in cou.vocabulary_.items()]
 word_freq = sorted(word_freq,key=lambda x: x[1],reverse=True)
 
+
 words = []
 count = []
+
+number_of_words = 20
+
+word_freq = [w for w in word_freq if w[0] != 'dr stone']
+print(word_freq[:20])
 
 for i in range(0,len(word_freq)):
     words.insert(i,word_freq[i][0])
     count.insert(i,word_freq[i][1])
 
-print(word_freq)
-
-y = np.arange(1,40)
-pypl.title('Most frequent words in Dr. Stone')
-pypl.barh(y,count[:39])
-pypl.yticks(y,words[:39])
+y = np.arange(1,number_of_words)
+pypl.title('Most frequent negative words in Dr. Stone episode 1-4')
+#pypl.title('Most frequent positive words in Dr. Stone episode 18-24')
+#pypl.title('Most frequent neutral words in Dr. Stone episode 18-24')
+pypl.barh(y,count[:number_of_words-1])
+pypl.yticks(y,words[:number_of_words-1])
+pypl.xlabel('Word Count')
+pypl.ylabel('Words')
 pypl.gca().invert_yaxis()
 pypl.show()
 

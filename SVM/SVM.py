@@ -153,6 +153,9 @@ contract = {
 "you've": "you have"
 }
 stopword = set(stopwords.words('english'))
+stopword.update(('know','really','say','way','thing','need','look','want','actually','use','like', 'think', 'would',
+                 'use','muda','dr stone','make','go','get'))
+
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
@@ -255,8 +258,8 @@ for ep in range(1, 2):
 
 
 
-    df12 = pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11,df12
-                      ])
+    df12 = pd.concat([df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12,df13,df14,df15,df16,df17,df18,df19,df20,df21,df22,df23,df24])
+   #,df19,df20,df21,df22,df23,df24
     train_array = []
     test_array = []
     train_target = []
@@ -282,7 +285,7 @@ for ep in range(1, 2):
     # neu_df['Comment'] = neu_df['Comment'].
     df_len = len(pos_df)
 
-    train_df = pd.concat([pos_df, neg_df])
+    train_df = pd.concat([pos_df, neg_df,neu_df])
     # train_df = pd.concat([pos_df, neg_df,neu_df])
     train_df = train_df.reset_index(drop=True)
 
@@ -291,7 +294,7 @@ for ep in range(1, 2):
     x_train, x_test, y_train, y_test = train_test_split(train_df['Comment'], train_df['Sentiment Rating'],
                                                         test_size=0.2, random_state=22)
 
-    vec = TfidfVectorizer(ngram_range=(1, 3),sublinear_tf=True)
+    vec = TfidfVectorizer(ngram_range=(1, 2),min_df=0.01,max_df=0.8,analyzer='word')
     # vec = CountVectorizer(ngram_range=(1, 2))
     x_tr = vec.fit_transform(x_train)
     x_ts = vec.transform(x_test)
@@ -313,17 +316,27 @@ for ep in range(1, 2):
     #iter = [1,10,50,100,500,1000]
     params = {'C': C,'gamma':gammas}
 
-    clas_linear = svm.SVC(kernel='linear',C=10.0,gamma=0.01)
+    # For 6 episodes : C=1.0, gamma=0.01
+    # For 12 episodes : C=1.0, gamma=0.01
+
+    #print('C : ',C[i],' gammas :',gammas[i])
+    clas_linear = svm.SVC(kernel='linear',C=1.0,gamma=0.001)
     clas_linear.fit(X_train_res,y_train_res)
     train_linear = clas_linear.predict(X_train_res)
     pred_linear = clas_linear.predict(x_ts)
     print(accuracy_score(y_train_res,train_linear))
     print(accuracy_score(y_test, pred_linear))
-    print(precision_score(y_test, pred_linear))
-    print(recall_score(y_test, pred_linear))
+    #print(precision_score(y_test, pred_linear))
+    #print(recall_score(y_test, pred_linear))
     print(confusion_matrix(y_test,pred_linear))
+    print('\n')
+
+    cross = cross_val_score(clas_linear,X_train_res,y_train_res,cv=10)
+    print(round(cross.mean(),2))
+    print(round(cross.std(),2))
+    print('\n')
     '''
-    grid = GridSearchCV(svm.SVC(kernel='linear'),cv=10,param_grid=params, refit = True)
+    grid = GridSearchCV(svm.SVC(kernel='linear'),cv=10,param_grid=params)
     grid.fit(X_train_res, y_train_res)
     print(grid.best_params_)
     #print(grid.best_estimator_)

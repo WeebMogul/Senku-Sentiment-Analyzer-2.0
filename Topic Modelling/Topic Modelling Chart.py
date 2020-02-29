@@ -147,6 +147,9 @@ contract = {
 # slime_file = 'D:\Github Projects\Heriot-Watt-Msc-Project-Sentiment-Analysis\Data Cleaner\Tensei Slime cleaned\Cleaned_Tensei_Slime_Episode_' + str(ep) + '_Comment_list.csv'
 
 stopword = set(stopwords.words('english'))
+stopword.update(('know','really','say','way','thing','need','look','want','actually','use','like', 'think', 'would',
+                 'use','muda','dr stone','make','go','get'))
+
 exclude = set(string.punctuation)
 lemma = WordNetLemmatizer()
 
@@ -260,7 +263,7 @@ for ep in range(1, 2):
     df123 = df123[['Comment', 'Sentiment Rating']]
     df123['Comment'] = df123['Comment'].astype(str)
     df123['Length'] = df123['Comment'].apply(len)
-   # df123 = df123[df123['Sentiment Rating'] == 1]
+    df123 = df123[df123['Sentiment Rating'] == 1]
    # df123 = df123[df123['Length'] > 5]
     df123['Comment'] = df123['Comment'].apply(lambda s: comment_cleaner(s, train_array))
 
@@ -277,10 +280,27 @@ for ep in range(1, 2):
     x_tr = vec.fit_transform(x)
     feature_names = np.array(vec.get_feature_names())
     print("Haha")
-    lda100 = LatentDirichletAllocation(n_components=50)
+    lda100 = LatentDirichletAllocation(n_components=10,random_state=22)
     print("Haha")
     document_topics100 = lda100.fit_transform(x_tr)
     print(document_topics100)
+
+    topi = []
+
+    def print_topics(model, vectorizer, top_n=10):
+     for idx, topic in enumerate(model.components_):
+         print("\nTopic : " ,str(idx),"\n")
+         for i in topic.argsort()[:-top_n-1:-1]:
+           topi.append((vectorizer.get_feature_names()[i]))
+         for i in range(0,top_n):
+             print(topi[i])
+         topi.clear()
+    
+    print_topics(lda100,vec)
+    
+
+
+    '''
     sorting = np.argsort(lda100.components_, axis=1)[:, ::-1]
 
     fig2, ax = pypl.subplots(1, 2, figsize=(10, 10))
@@ -306,3 +326,4 @@ for ep in range(1, 2):
     print("Haha")
     pypl.tight_layout()
     pypl.show()
+    '''
